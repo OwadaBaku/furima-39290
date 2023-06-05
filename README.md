@@ -30,7 +30,7 @@ https://furima-39290.onrender.com/
 なし
 <br>
 # データベース設計
-[![Image from Gyazo](https://i.gyazo.com/fb7da2ad356caabaa53d3667e1f7ecb7.png)](https://gyazo.com/fb7da2ad356caabaa53d3667e1f7ecb7)
+[![Image from Gyazo](https://i.gyazo.com/bbffe775de7b9affb982716369e7ea96.png)](https://gyazo.com/bbffe775de7b9affb982716369e7ea96)
 <br>
 # 画面遷移図
 <br>
@@ -38,20 +38,23 @@ https://furima-39290.onrender.com/
 ### usersテーブル
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| encrypted_password | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
 | first_name_kana    | string | null: false               |
 | birthday           | date   | null: false               |
 
+#### Association
+	has_many :items
+	has_many :orders
+
 ### items テーブル
 | Column       	   		 | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | user           	  	 | references | null: false, foreign_key: true |
-| image                | img        | null: false                    |
 | item_name     	 	   | string     | null: false                    |
 | item_description     | text       | null: false                    |
 | category_id          | integer    | null: false                    |
@@ -61,22 +64,34 @@ https://furima-39290.onrender.com/
 | shipping_days_id     | integer    | null: false                    |
 | price                | integer    | null: false                    |
 
+#### Association
+	belong_to :users
+	has_one :order
+
 ### ordersテーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null :false, foreign_key :true |
 | item          | references | null :false, foreign_key :true |
 
+#### Association
+	belong_to :users
+	has_one :items
+	has_one :payments
+
 ### payments テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| order_user    | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 | postcode      | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | house_numbar  | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
+
+#### Association
+	belong_to :order
 
 # 開発環境
 - フロントエンド
