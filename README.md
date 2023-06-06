@@ -65,7 +65,7 @@ https://furima-39290.onrender.com/
 | price                | integer    | null: false                    |
 
 #### Association
-	belong_to :users
+	belongs_to :user
 	has_one :order
 
 ### ordersテーブル
@@ -75,8 +75,8 @@ https://furima-39290.onrender.com/
 | item          | references | null: false, foreign_key: true |
 
 #### Association
-	belong_to :items
-	has_one :user
+	belongs_to :item
+	belongs_to :user
 	has_one :payment
 
 ### payments テーブル
@@ -91,7 +91,7 @@ https://furima-39290.onrender.com/
 | phone_number  | string     | null: false                    |
 
 #### Association
-	belong_to :order
+	belongs_to :order
 
 # 開発環境
 - フロントエンド
