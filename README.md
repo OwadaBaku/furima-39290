@@ -30,7 +30,7 @@ https://furima-39290.onrender.com/
 なし
 <br>
 # データベース設計
-[![Image from Gyazo](https://i.gyazo.com/bbffe775de7b9affb982716369e7ea96.png)](https://gyazo.com/bbffe775de7b9affb982716369e7ea96)
+[![Image from Gyazo](https://i.gyazo.com/9e11e98b1a99ef829e0e0d82068031d4.png)](https://gyazo.com/9e11e98b1a99ef829e0e0d82068031d4)
 <br>
 # 画面遷移図
 <br>
@@ -61,7 +61,7 @@ https://furima-39290.onrender.com/
 | item_condition_id    | integer    | null: false                    |
 | item_postage_id      | integer    | null: false                    |
 | prefecture_id        | integer    | null: false                    |
-| shipping_days_id     | integer    | null: false                    |
+| shipping_day_id      | integer    | null: false                    |
 | price                | integer    | null: false                    |
 
 #### Association
@@ -71,23 +71,23 @@ https://furima-39290.onrender.com/
 ### ordersテーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user          | references | null :false, foreign_key :true |
-| item          | references | null :false, foreign_key :true |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
 #### Association
-	belong_to :users
-	has_one :items
-	has_one :payments
+	belong_to :items
+	has_one :user
+	has_one :payment
 
 ### payments テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user          | references | null: false, foreign_key: true |
+| order_id      | references | null: false, foreign_key: true |
 | postcode      | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
-| house_numbar  | string     | null: false                    |
-| building_name | string     |                                |
+| house_number  | string     | null: false                    |
+| building_name | string     | null: false                    |
 | phone_number  | string     | null: false                    |
 
 #### Association
