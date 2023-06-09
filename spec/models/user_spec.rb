@@ -66,6 +66,14 @@ RSpec.describe User, type: :model do
       end
     end
 
+    it 'passwordが全角文字を含む場合登録できない' do
+      @user.password = 'パスワード' # 全角の場合
+      @user.valid?
+      unless @user.password =~ /^(?=.*[a-zA-Z])(?=.*\d).*$/
+        expect(@user.errors.full_messages).to include 'Password is invalid. Include both letters and numbers'
+      end
+    end
+
     it 'passwordとpassword_confirmationの値が一致しない場合登録できない' do
       @user.password_confirmation = 'invalid_password'
       @user.valid?
