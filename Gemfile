@@ -64,3 +64,4 @@ gem 'factory_bot_rails'
 group :development do
   gem 'rubocop', require: false
 end
+gem 'faker'
