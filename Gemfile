@@ -65,3 +65,4 @@ group :development do
   gem 'rubocop', require: false
 end
 gem 'faker'
+gem 'active_hash'
