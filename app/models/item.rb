@@ -14,6 +14,9 @@ class Item < ApplicationRecord
   validates :item_name, :item_description, :price, presence: true
   #商品画像を1枚つけないと保存できないようにする
   validates :image, presence: true
+  # 価格は、¥300~¥9,999,999の間以外は保存できないようにする
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  validates :price, format: { with: /\A[0-9]+\z/, message: 'Price is invalid. Input half-width characters.' }
   #ジャンルの選択が「---」の時は保存できないようにする
   validates :category_id, :item_condition_id, :item_postage_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 1 } 
 end
