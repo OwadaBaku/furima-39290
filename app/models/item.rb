@@ -1,3 +1,4 @@
+# itemsモデル
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
@@ -11,7 +12,8 @@ class Item < ApplicationRecord
 
   #空の投稿を保存できないようにする
   validates :item_name, :item_description, :price, presence: true
-
+  #商品画像を1枚つけないと保存できないようにする
+  validates :image, presence: true
   #ジャンルの選択が「---」の時は保存できないようにする
   validates :category_id, :item_condition_id, :item_postage_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 1 } 
 end
