@@ -13,8 +13,8 @@ class Item < ApplicationRecord
   validates :item_name, :item_description, :price, presence: true
   # 商品画像を1枚つけないと保存できないようにする
   validates :image, presence: true
-  # 価格は、¥300~¥9,999,999の間以外は保存できないようにする
-  # 価格は、半角数字以外は保存できないようにする
+  # 価格は、半角数字で¥300~¥9,999,999の間以外は保存できないようにする
+  # 価格は、数字保存できないようにする
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 },
             format: { with: /\A[0-9]+\z/ }
 
