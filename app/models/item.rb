@@ -9,7 +9,6 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 	has_one_attached :image
 
-
   #空の投稿を保存できないようにする
   validates :item_name, :item_description, :price, presence: true
   #商品画像を1枚つけないと保存できないようにする
