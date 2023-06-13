@@ -65,6 +65,3 @@ group :development do
   gem 'rubocop', require: false
 end
 gem 'faker'
-gem 'active_hash'
-gem 'mini_magick'
-gem 'image_processing', '~> 1.2'
