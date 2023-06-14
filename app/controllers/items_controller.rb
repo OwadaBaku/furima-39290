@@ -5,12 +5,12 @@ class ItemsController < ApplicationController
     @item = Item.order(created_at: :desc)
   end
 
-  def new
-    @item = Item.new
-  end
-
   def show
     @item = Item.find(params[:id])
+  end
+
+  def new
+    @item = Item.new
   end
 
   def create
@@ -20,6 +20,23 @@ class ItemsController < ApplicationController
       redirect_to root_path, notice: '出品が完了しました。'
     else
       render :new
+    end
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+
+    if @item.user != current_user
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path, notice: '変更が完了しました。'
+    else
+      render :edit
     end
   end
 
