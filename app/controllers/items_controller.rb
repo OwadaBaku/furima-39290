@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.image.attach(params[:item][:image])
     if @item.save
       redirect_to root_path, notice: '出品が完了しました。'
     else
