@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
 
   def edit
     return unless @item.user != current_user
+
     redirect_to root_path
   end
 
@@ -53,6 +54,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :item_name, :item_description, :category_id, :item_condition_id, :item_postage_id,
-                                  :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
+                                 :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
   end
 end
