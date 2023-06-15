@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :items
   post '/items/new', to: 'items#create'
+  resources :oeder, only:[:index, :create]
 end
