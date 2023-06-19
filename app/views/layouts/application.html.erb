@@ -5,9 +5,15 @@
   <title>Furima</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
+
+  <%# ブラウザでアプリケーションを開いたときに、payjp.jsが読み込まれるようにする %>
+  <script type="text/javascript" src="https://js.pay.jp/v2/"></script>
+  <%# ブラウザでアプリケーションを開いたときに、payjp.jsが読み込まれるようにする %>
+
+  <%# 商品実装機能のため追記 %>
   <%= stylesheet_link_tag 'application', media: 'all'%>
   <%= javascript_pack_tag 'application' %>
+  <%# 商品実装機能のため追記 %>
 </head>
 
 <body>
