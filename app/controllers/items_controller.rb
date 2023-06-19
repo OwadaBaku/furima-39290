@@ -24,26 +24,26 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return unless @item.user != current_user
+    return unless @item.user != current_user || @item.sold_out?
 
     redirect_to root_path
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path, notice: '変更が完了しました。'
+    if @item.user == current_user && !@item.sold_out?
+      if @item.update(item_params)
+        redirect_to item_path, notice: '変更が完了しました。'
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to root_path
     end
   end
 
   def destroy
-    if @item.user == current_user
-      @item.destroy
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    @item.destroy if @item.user == current_user
+    redirect_to root_path
   end
 
   private
