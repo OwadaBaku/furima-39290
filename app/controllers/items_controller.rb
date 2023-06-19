@@ -32,20 +32,18 @@ class ItemsController < ApplicationController
   def update
     if @item.user == current_user && !@item.sold_out?
       if @item.update(item_params)
-      redirect_to item_path, notice: '変更が完了しました。'
+        redirect_to item_path, notice: '変更が完了しました。'
       else
         render :edit
       end
     else
-    redirect_to root_path
+      redirect_to root_path
     end
   end
 
   def destroy
-    if @item.user == current_user
-      @item.destroy
-    end
-      redirect_to root_path
+    @item.destroy if @item.user == current_user
+    redirect_to root_path
   end
 
   private
@@ -56,6 +54,6 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :item_name, :item_description, :category_id, :item_condition_id, :item_postage_id,
-                                :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
+                                 :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
   end
 end

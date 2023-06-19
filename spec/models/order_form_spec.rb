@@ -7,7 +7,7 @@ RSpec.describe OrderForm, type: :model do
 
   context '商品購入' do
     context '購入できるとき' do
-      it "すべての値が正しく入力されていれば保存できる" do
+      it 'すべての値が正しく入力されていれば保存できる' do
         expect(@order_form).to be_valid
       end
     end
@@ -75,10 +75,10 @@ RSpec.describe OrderForm, type: :model do
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include "Phone number can't be blank"
       end
-      it 'phone_numbeが10桁以上11桁以内出ないと保存できない(9桁の場合)'do
-      @order_form.phone_number = '123456789'
-      @order_form.valid?
-      expect(@order_form.errors.full_messages).to include "Phone number is too short"
+      it 'phone_numbeが10桁以上11桁以内出ないと保存できない(9桁の場合)' do
+        @order_form.phone_number = '123456789'
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include 'Phone number is too short'
       end
     end
   end

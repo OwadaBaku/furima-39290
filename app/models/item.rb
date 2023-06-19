@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
 
-
   # 空の投稿を保存できないようにする
   validates :item_name, :item_description, :price, presence: true
   # 商品画像を1枚つけないと保存できないようにする
@@ -24,5 +23,4 @@ class Item < ApplicationRecord
   def sold_out?
     Order.exists?(item_id: id)
   end
-
 end
