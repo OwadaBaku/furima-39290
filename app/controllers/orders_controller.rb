@@ -1,13 +1,8 @@
 class OrdersController < ApplicationController
-  require 'payjp'
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
 
   def index
-    @order_form = OrderForm.new
-  end
-
-  def new
     @order_form = OrderForm.new
   end
 
@@ -31,9 +26,7 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
-    if !user_signed_in?
-      redirect_to new_user_session_path
-    elsif current_user.id == @item.user_id || @item.order.present?
+    if current_user.id == @item.user_id || @item.order.present?
       redirect_to root_path
     end
   end
